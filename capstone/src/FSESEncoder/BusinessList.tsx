@@ -11,6 +11,7 @@ import UpdateRenewalApplication from './Approved_Business-Renewal_Permits/Update
 import AddApplication from './AddApplication';
 import ViewEvaluate from './Approved_Business-Renewal_Permits/ViewEvaluate';
 import DeleteEncoderPopup from './DeleteEncoderPopup';
+import EvaluatePopup from './Approved_Business-Renewal_Permits/EvaluateApprovedApplication';
 import { businessPermit } from '../types/Users';
 import { DocumentData, QuerySnapshot, onSnapshot } from 'firebase/firestore';
 import { businessPermCollection } from '../lib/controller';
@@ -402,6 +403,23 @@ const BusinessList: React.FC = () => {
                                             remarks={businessPermit.remarks || ''}
                                             form="New"
                                             handleClose={() => handleCloseDelete(businessPermit.id)}
+                                        />
+                                        
+                                        <EvaluatePopup
+                                            form='Renewal'
+                                            bpid={businessPermit.id}
+                                            activity='Pending'
+                                            open={openEvaluateBusiness[businessPermit.id]}
+                                            permitee={businessPermit.permittee || ''}
+                                            business_no={businessPermit.bspermit_no || ''}
+                                            business_name={businessPermit.business_name || ''}
+                                            address={businessPermit.address || ''}
+                                            natureofbusiness={businessPermit.nature_business || ''}
+                                            typeofoccupancy={businessPermit.type_occupancy || ''}
+                                            contactno={businessPermit.contact_no || ''}
+                                            email={businessPermit.email || ''}
+                                            datereceived={businessPermit.date_received || ''}
+                                            handleClose={() => handleCloseEvaluate(businessPermit.id)}
                                         />
                                         
                                         <ViewEvaluate
